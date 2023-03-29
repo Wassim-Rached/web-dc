@@ -1,0 +1,16 @@
+<body>
+  <form name="frm">
+    <fieldset>
+      <legend>A la recherche du bon prix!</legend>
+      <label>Choisissez une option de recherche</label>
+      <select name="lstOpt" onchange="on_lstOpt_change()">
+        <option value="c1" selected>Tous les prix TTC</option>
+        <option value="c2">Le prix le moins cher</option>
+        <option value="c3">Les prix qui sont dans le budget</option>
+      </select>
+      <br /><br />
+      <textarea name="txtPrix" cols="40" rows="2"></textarea><br />
+    </fieldset>
+  </form>
+  <script src="index.js"></script>
+</body>

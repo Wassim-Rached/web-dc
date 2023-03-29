@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cryptage des messages</title>
+    <style>
+      input {
+        outline: none;
+      }
+      legend {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Cryptage d'un message & Archivage</h3>
+    <form name="f" action="Msg.php" method="post">
+      <label>Introduisez votre message</label>
+      <input type="text" name="txtMessage" onfocusout="tester()" />
+      <br />
+      <label>Choisissez une date</label>
+      <input type="date" name="txtDate" /> <br />
+      <input type="radio" name="rdDate" value="Début" />Début
+      <input type="radio" name="rdDate" value="Fin" checked />Fin <br />
+      <input type="button" name="btnCrypter" value="Crypter" /> <br />
+      <textarea name="txtCrypte" cols="30" rows="3"></textarea> <br />
+      <input type="submit" name="btnEnvoyer" value="Envoyer" disabled />
+      <input type="reset" value="Effacer" />
+    </form>
+  </body>
+  <script src="cryptage.js"></script>
+</html>
