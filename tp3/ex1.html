@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercice 1</title>
+  </head>
+  <body>
+    <h1>Opérations sur les tableaux</h1>
+    <form name="f">
+      <label id="lbl1"> Tableau 1 :</label>
+      <input type="text" name="tab1" readonly /><br />
+      <label id="lbl1"> Tableau 2 :</label>
+      <input type="text" name="tab2" readonly />
+      <fieldset name="field_set">
+        <legend>Choisir une opération</legend>
+        <input type="radio" name="rb" value="taille" />
+        Taille du t1 <br />
+        <input type="radio" name="rb" value="last" />
+        2 Derniers éléments de t1<br />
+        <input type="radio" name="rb" value="fusion" />
+        Fusion des 2 tableaux<br />
+        <input type="radio" name="rb" value="moitie" />
+        1ère Moitié du tableau t2<br />
+        <input type="radio" name="rb" value="inversion" />
+        Inversion de t1<br />
+        <input type="radio" name="rb" value="pair" />
+        Nombres pairs de t2<br />
+        <input type="radio" name="rb" value="new" />
+        Nouveau tableau avec des valeurs doubles du 1er tableau<br />
+        <input type="radio" name="rb" value="multiple" />
+        Premier nombre multiple de 3 de t1<br />
+        <input type="radio" name="rb" value="somme" />
+        Somme des éléments du tableau t2<br />
+        <input type="radio" name="rb" value="petit" />
+        Plus petit élément des 2 tableaux<br />
+        <!-- show -->
+        <input type="text" readonly name="txtResultat" size="30" />
+      </fieldset>
+    </form>
+    <script>
+      const t1 = [17, 24, 89, 4, 26, 15];
+      const t2 = [11, 58, 62, 47, 6];
+      const tab1_dom = document.f.tab1;
+      const tab2_dom = document.f.tab2;
+
+      window.onload = init;
+
+      function init() {
+        tab1_dom.value = t1.join(",");
+        tab2_dom.value = t2.join(",");
+      }
+
+      const radio_operation_dom = document.getElementsByName("rb");
+      for (let index = 0; index < radio_operation_dom.length; index++) {
+        radio_operation_dom[index].addEventListener("change", () => {
+          // [taille,last,fusion,moitie,inversion,pair,new,multiple,somme,petit]
+          const value = radio_operation_dom[index].value;
+          let result;
+          switch (value) {
+            case "taille":
+              result = t1.length;
+              afficher(result);
+              break;
+
+            case "last":
+              result = t1.slice(-2);
+              afficher(result);
+              break;
+
+            case "fusion":
+              result = t1.concat(t2);
+              afficher(result);
+              break;
+
+            case "moitie":
+              result = t2.slice(0, t1.length / 2);
+              afficher(result);
+              break;
+
+            case "inversion":
+              result = t1.reverse();
+              afficher(result);
+              break;
+
+            case "pair":
+              result = t2.filter((a) => a % 2 == 0).length;
+              afficher(result);
+              break;
+
+            case "new":
+              result = t1.map((a) => a * 2);
+              afficher(result);
+              break;
+
+            case "multiple":
+              result = t1.filter((a) => a % 3 == 0)[0];
+              afficher(result);
+              break;
+
+            case "somme":
+              result = 0;
+              t1.forEach((value) => {
+                result += value;
+              });
+              afficher(result);
+              break;
+
+            case "petit":
+              result = Math.min(...t1, ...t2);
+              afficher(result);
+              break;
+
+            default:
+              break;
+          }
+        });
+      }
+
+      function afficher(text) {
+        const txtResultat_dom = document.getElementsByName("txtResultat");
+        txtResultat_dom[0].value = text;
+      }
+    </script>
+  </body>
+</html>

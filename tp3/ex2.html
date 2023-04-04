@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex 2</title>
+    <script>
+      const arr_str = prompt("saisir un tableau:");
+      const tab = arr_str.split(",").slice(0, 10);
+
+      const tab_neg = tab.filter((a) => a < 0).reverse();
+
+      const tab_null = tab.filter((a) => a == 0);
+
+      const tab_pos = tab.filter((a) => a > 0);
+
+      const result_tab = tab_neg.concat(tab_null, tab_pos);
+
+      const result = result_tab.join(",");
+
+      alert(result);
+    </script>
+  </head>
+  <body></body>
+</html>

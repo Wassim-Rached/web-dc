@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex 3</title>
+    <style>
+      table,
+      tbody,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const NomEleves = new Array("Salma", "Sami", "Ahmed", "Maroua", "Houda");
+      const Notes = new Array([10, 12, 18, 5, 9], [13, 11, 14, 7, 14]);
+      const tabFinal = fusionnerTableaux(NomEleves, Notes);
+
+      function fusionnerTableaux(tabNoms, tabNotes) {
+        let moyenne_arr = Array(tabNotes[0].length).fill(0);
+
+        // loop through every array
+        tabNotes.forEach((arr) => {
+          // loop through the array values
+          arr.forEach((value, i) => {
+            moyenne_arr[i] += value;
+          });
+        });
+
+        moyenne_arr = moyenne_arr.map((value) => {
+          return value / tabNotes.length;
+        });
+
+        let result = [tabNoms, ...tabNotes, moyenne_arr];
+
+        return result;
+      }
+
+      function afficherTableau(tabFinal) {
+        let head = `<table>
+                       <thead>
+                         <tr>
+                           <td>Nom</td>
+                           <td>note1</td>
+                           <td>note2</td>
+                           <td>Moyenne</td>
+                         </tr>
+                       </thead>
+                       <tbody>
+                `;
+
+        for (let index = 0; index < tabFinal[0].length; index++) {
+          head += `<tr>
+          				<td>${tabFinal[0][index]}</td>
+          				<td>${tabFinal[1][index]}</td>
+          				<td>${tabFinal[2][index]}</td>
+          				<td>${tabFinal[3][index]}</td>
+          			</tr>`;
+        }
+        const body = `
+                       </tbody>
+                     </table>`;
+        const html = head + body;
+        document.write(html);
+      }
+      function meilleurEtudiant(tabFinal) {
+        //get the max index
+        let max_index = tabFinal[3].indexOf(Math.max(...tabFinal[3]));
+        // use it to get the name and the moyenne
+        let max_moyenne = tabFinal[3][max_index];
+        let max_nom = tabFinal[0][max_index];
+        // write the message
+        let message = `meilleur Etudiant : ${max_nom} Moyenne ${max_moyenne} `;
+        //	send it
+        document.write(message);
+      }
+
+      afficherTableau(tabFinal);
+      meilleurEtudiant(tabFinal);
+    </script>
+  </body>
+</html>
